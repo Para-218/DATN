@@ -1,0 +1,25 @@
+.small-video {
+  display: flex;
+  flex-direction: column;
+  width: 245px;
+  height: 230px;
+  margin: 15px;
+  text-decoration: none;
+  min-width: 240px;
+  img {
+    border-radius: 20px;
+    width: 100%;
+    height: auto;
+  }
+  .smaller-video {
+    margin: 15px;
+    p:first-child {
+      color: black;
+      font-weight: bold;
+    }
+    p:last-child {
+      color: gray;
+    }
+  }
+  
+}
