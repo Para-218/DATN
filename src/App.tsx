@@ -1,12 +1,12 @@
 import { FC } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-import Calculator from '@pages/Calculator'
-import Camera from '@pages/Camera'
-import Home from '@pages/Home/home'
-import Login from '@pages/Login'
-import SignUp from '@pages/SignUp'
-import Statistic from '@pages/Statistic'
+import Calculator from './pages/Calculator'
+import Camera from './pages/Camera'
+import Home from './pages/Home/home'
+import Login from './pages/Login'
+import SignUp from './pages/SignUp'
+import Statistic from './pages/Statistic'
 import './assets/styles/app.css'
 import './assets/styles/app.scss'
 

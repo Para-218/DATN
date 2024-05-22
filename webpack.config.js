@@ -10,6 +10,7 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const webpack = require('webpack')
+const fs = require('fs')
 
 // Cái dòng này giúp Editor gợi ý được các giá trị cho dòng code config ngay phía dưới nó
 // (giống như đang dùng Typescript vậy đó 😉)
@@ -95,7 +96,12 @@ module.exports = (env, argv) => {
         directory: path.resolve(__dirname, 'public', 'index.html'),
         serveIndex: true,
         watch: true // khi thay đổi content trong index.html thì cũng sẽ reload
-      }
+      },
+      https: {
+        key: fs.readFileSync("./.cert/cert.key"),
+        cert: fs.readFileSync("./.cert/cert.crt"),
+        ca: fs.readFileSync("./.cert/ca.crt"),
+    },
     },
     devtool: isProduction ? false : 'source-map',
     plugins: [
