@@ -15,12 +15,18 @@ export interface APISigninError {
   accessToken: string | null,
 }
 
+export interface APISignupResponse {
+  message: string
+}
+
+export interface APISignupError {
+  message: string
+}
+
 export interface APIEditProfileResponse {
   message: string
 }
 
 export type Storage = 'username' | 'roles' | 'accessToken'
 
-export interface APISignupResponse {
-  message: string
-}
+export const delay = (ms: number) => new Promise(res => setTimeout(res, ms));

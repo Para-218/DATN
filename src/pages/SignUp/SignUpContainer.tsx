@@ -1,6 +1,6 @@
 import { FC, useState, FormEvent } from 'react'
 import './index.scss'
-import { APISignupResponse, ErrorMessage } from '../../service'
+import { APISignupResponse, ErrorMessage, delay } from '../../service'
 
 const SignUpContainer: FC = () => {
   const [firstname, setFirstname] = useState<string>('')
@@ -28,19 +28,20 @@ const SignUpContainer: FC = () => {
           password: password
         })
       })
-      if (!response.ok) {
+      if (response.status === 200) {
+        const responseData = (await response.json()) as APISignupResponse
+        setError(responseData.message)
+        await delay(5000)
+        window.location.href = '/login'
+      } else if (response.status < 500) {
         const errorData = await response.json()
         const customError = errorData as ErrorMessage
         setError(customError.message)
-        console.log(customError.message)
       } else {
-        const responseData = (await response.json()) as APISignupResponse
-        console.log(responseData.message)
-        window.location.href = '/login'
+        setError('Server is not responding! Try again later!')
       }
     } catch (err) {
-      const customError = err as ErrorMessage
-      setError(customError.message)
+      setError('Something went wrong! Try again later!')
     }
   }
 
@@ -57,7 +58,7 @@ const SignUpContainer: FC = () => {
         <button type='submit'>Sign Up</button>
       </form>
       <a href='/login'>Already have account? Login!</a>
-      {error != '' && <p>Something wrong! Please try again</p>}
+      {error != '' && <p>{error}</p>}
     </div>
   )
 }
