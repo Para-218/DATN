@@ -5,6 +5,7 @@ import { APISignupResponse, ErrorMessage } from '../../service'
 const SignUpContainer: FC = () => {
   const [firstname, setFirstname] = useState<string>('')
   const [lastname, setLastname] = useState<string>('')
+  const [phoneNumber, setPhoneNumber] = useState<string>('')
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [error, setError] = useState<string>('')
@@ -22,6 +23,7 @@ const SignUpContainer: FC = () => {
         body: JSON.stringify({
           first_name: firstname,
           last_name: lastname,
+          phone: phoneNumber,
           username: username,
           password: password
         })
@@ -30,6 +32,7 @@ const SignUpContainer: FC = () => {
         const errorData = await response.json()
         const customError = errorData as ErrorMessage
         setError(customError.message)
+        console.log(customError.message)
       } else {
         const responseData = (await response.json()) as APISignupResponse
         console.log(responseData.message)
@@ -44,15 +47,17 @@ const SignUpContainer: FC = () => {
   return (
     <div className='signup-container'>
       <h1>Fire Detection</h1>
+      <h2>Signup</h2>
       <form onSubmit={signup}>
         <input type='text' placeholder='Enter first name' onChange={(e) => setFirstname(e.target.value)} required />
         <input type='text' placeholder='Enter last name' onChange={(e) => setLastname(e.target.value)} required />
+        <input type='text' placeholder='Enter phone number' onChange={(e) => setPhoneNumber(e.target.value)} required />
         <input type='text' placeholder='Enter username' onChange={(e) => setUsername(e.target.value)} required />
         <input type='password' placeholder='Enter password' onChange={(e) => setPassword(e.target.value)} required />
         <button type='submit'>Sign Up</button>
       </form>
       <a href='/login'>Already have account? Login!</a>
-      {error != '' && <p>Something wrong!</p>}
+      {error != '' && <p>Something wrong! Please try again</p>}
     </div>
   )
 }

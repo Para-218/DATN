@@ -29,7 +29,12 @@ export const UserItem: FC = () => {
   return (
     <Dropdown>
       <Dropdown.Toggle variant='success' id='dropdown-basic'>
-        <MenuItem name={username} url='#user' icon={UserIcon} />
+        <div className='user-item'>
+          <div>
+            <img src={UserIcon} alt='User Icon' />
+            <p>{username}</p>
+          </div>
+        </div>
       </Dropdown.Toggle>
 
       <Dropdown.Menu>

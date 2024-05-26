@@ -28,8 +28,33 @@
     }
   }
 }
-.dropdown-button {
-  position: absolute;
-  inset: 0px auto auto 0px;
-  transform: translate(75px, 48px);
+.user-item {
+  width: 218px;
+  height: 51px;
+  overflow: hidden;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  div {
+    color: white;
+    text-decoration-line: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    img {
+      height: 32px;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+    p {
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0px;
+    }
+  }
 }
