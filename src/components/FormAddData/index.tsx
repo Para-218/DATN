@@ -11,35 +11,35 @@ const FormAddData: FC<{ handleAddData: () => void }> = (props) => {
         <form>
           <label>
             Nhập nhiệt độ:
-            <input type='text' />
+            <input type='number' />
           </label>
           <label>
             Nhập độ ẩm:
-            <input type='text' />
+            <input type='number' />
           </label>
           <label>
             Nhập TVOC:
-            <input type='text' />
+            <input type='number' />
           </label>
           <label>
             Nhập eCO2:
-            <input type='text' />
+            <input type='number' />
           </label>
           <label>
             Nhập RAW H2:
-            <input type='text' />
+            <input type='number' />
           </label>
           <label>
             Nhập RAW Ethanol:
-            <input type='text' />
+            <input type='number' />
           </label>
           <label>
             Nhập áp suất:
-            <input type='text' />
+            <input type='number' />
           </label>
           <label>
             Nhập PMI1.0:
-            <input type='text' />
+            <input type='number' />
           </label>
           <button type='submit'>Add</button>
         </form>

@@ -5,10 +5,16 @@ export interface ErrorMessage {
 }
 
 export interface APISigninResponse {
-  Username: string,
-  Roles: [string],
-  accessToken: any,
+  username: string,
+  roles: [string],
+  accessToken: string,
 }
+
+export interface APIEditProfileResponse {
+  message: string
+}
+
+export type Storage = 'username' | 'roles' | 'accessToken'
 
 export interface APISignupResponse {
   message: string

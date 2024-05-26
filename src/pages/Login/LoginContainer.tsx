@@ -17,7 +17,10 @@ const LoginContainer: FC = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
       })
       if (!response.ok) {
         const errorData = await response.json()
@@ -25,9 +28,10 @@ const LoginContainer: FC = () => {
         setError(customError.message)
       } else {
         const responseData = (await response.json()) as APISigninResponse
+        console.log(responseData)
         localStorage.setItem('token', responseData.accessToken)
-        localStorage.setItem('username', responseData.Username)
-        localStorage.setItem('roles', responseData.Roles[0])
+        localStorage.setItem('username', responseData.username)
+        localStorage.setItem('roles', responseData.roles[0])
         window.location.href = '/home'
       }
     } catch (err) {

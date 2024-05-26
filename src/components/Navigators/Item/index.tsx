@@ -1,9 +1,9 @@
-import { FC } from 'react'
-import './index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { FC } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
 import UserIcon from '../../../assets/icon/User.png'
-import { handleLogout } from '../Logout'
+import { handleLogout } from '../../../functions/Logout'
+import './index.scss'
 
 interface IProps {
   name: string
@@ -38,9 +38,9 @@ export const UserItem: FC = () => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href='#/action-1'>Edit profile</Dropdown.Item>
+        <Dropdown.Item href='#/action-1'>Chỉnh sửa hồ sơ</Dropdown.Item>
         <Dropdown.Divider />
-        <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+        <Dropdown.Item onClick={handleLogout}>Đăng xuất</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   )
