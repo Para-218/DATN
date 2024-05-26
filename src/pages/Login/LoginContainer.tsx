@@ -1,6 +1,6 @@
 import { FC, useState, FormEvent } from 'react'
 import './index.scss'
-import { APISigninResponse, ErrorMessage } from '../../service'
+import { APISigninResponse, APISigninError } from '../../service'
 
 const LoginContainer: FC = () => {
   const [username, setUsername] = useState<string>('')
@@ -22,21 +22,21 @@ const LoginContainer: FC = () => {
           password: password
         })
       })
-      if (!response.ok) {
-        const errorData = await response.json()
-        const customError = errorData as ErrorMessage
-        setError(customError.message)
-      } else {
+      if (response.status === 200) {
         const responseData = (await response.json()) as APISigninResponse
-        console.log(responseData)
         localStorage.setItem('token', responseData.accessToken)
         localStorage.setItem('username', responseData.username)
         localStorage.setItem('roles', responseData.roles[0])
         window.location.href = '/home'
+      } else if (response.status < 500) {
+        const errorData = await response.json()
+        const customError = errorData as APISigninError
+        setError(customError.message)
+      } else {
+        setError('Server is not responding! Try again later!')
       }
     } catch (err) {
-      const customError = err as ErrorMessage
-      setError(customError.message)
+      setError('Something went wrong! Try again later!')
     }
   }
 
@@ -50,7 +50,7 @@ const LoginContainer: FC = () => {
         <button type='submit'>Login</button>
       </form>
       <a href='/signup'>Not have account? sign up!</a>
-      {error != '' && <p>Invalid username, password</p>}
+      {error != '' && <p>{error}</p>}
     </div>
   )
 }

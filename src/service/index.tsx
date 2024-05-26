@@ -10,6 +10,11 @@ export interface APISigninResponse {
   accessToken: string,
 }
 
+export interface APISigninError {
+  message: string,
+  accessToken: string | null,
+}
+
 export interface APIEditProfileResponse {
   message: string
 }
