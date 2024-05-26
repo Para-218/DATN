@@ -2,7 +2,6 @@ import { ErrorMessage, APIEditProfileResponse } from '../../service'
 import { FC, useState } from 'react'
 import './index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Dropdown from 'react-bootstrap/Dropdown'
 
 const FormEditProfile: FC = () => {
   const [first_name, setFirstname] = useState<String>('')

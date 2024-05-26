@@ -1,6 +1,7 @@
-import { FC, useState, FormEvent } from 'react'
+import { FC, FormEvent, useState } from 'react'
+import { delay } from '../../functions/Delay'
+import { APISignupResponse, ErrorMessage } from '../../service'
 import './index.scss'
-import { APISignupResponse, ErrorMessage, delay } from '../../service'
 
 const SignUpContainer: FC = () => {
   const [firstname, setFirstname] = useState<string>('')

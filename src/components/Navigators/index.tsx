@@ -1,19 +1,16 @@
 import { FC } from 'react'
 import BellIcon from '../../assets/icon/Bell.png'
 import CameraIcon from '../../assets/icon/Camera.png'
-import SettingIcon from '../../assets/icon/Setting.png'
 import HomeIcon from '../../assets/icon/Home.png'
+import SettingIcon from '../../assets/icon/Setting.png'
 import { Colors, FontSize } from '../../assets/theme'
+import { IProps } from '../../service'
 import './index.scss'
 import { MenuItem, UserItem } from './Item'
 
-const onLocate = { backgroundColor: Colors.MAIN1, fontSize: FontSize.REGULAR }
 const first_item = { marginTop: '50px' }
+const onLocate = { backgroundColor: Colors.MAIN1, fontSize: FontSize.REGULAR }
 const combine = { backgroundColor: Colors.MAIN1, fontSize: FontSize.REGULAR, marginTop: '50px' }
-
-interface IProps {
-  locate: 'home' | 'cameras' | 'notifications' | 'calculator'
-}
 
 export const Navigator: FC<IProps> = (props: IProps) => {
   if (props.locate === 'home') {
