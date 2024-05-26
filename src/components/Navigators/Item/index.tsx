@@ -3,18 +3,12 @@ import { FC } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
 import UserIcon from '../../../assets/icon/User.png'
 import { handleLogout } from '../../../functions/Logout'
+import { IMenuItemProps } from '../../../service'
 import './index.scss'
-
-interface IProps {
-  name: string
-  url: string
-  icon: string
-  style?: React.CSSProperties
-}
 
 const username = localStorage.getItem('username') || 'Anonymous'
 
-export const MenuItem: FC<IProps> = (props: IProps) => {
+export const MenuItem: FC<IMenuItemProps> = (props: IMenuItemProps) => {
   return (
     <div className='menu-item' style={props.style}>
       <a href={props.url}>
@@ -38,7 +32,7 @@ export const UserItem: FC = () => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href='#/action-1'>Chỉnh sửa hồ sơ</Dropdown.Item>
+        <Dropdown.Item href='/editprofile'>Chỉnh sửa hồ sơ</Dropdown.Item>
         <Dropdown.Divider />
         <Dropdown.Item onClick={handleLogout}>Đăng xuất</Dropdown.Item>
       </Dropdown.Menu>

@@ -1,0 +1,39 @@
+.main-content .edit-profile-content {
+  width: 907px;
+  height: 688px;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  h1 {
+    margin-top: 20px;
+    text-align: center;
+  }
+  form {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    display: flex;
+    justify-content: space-between;
+    input {
+      width: 550px;
+      border-radius: 10px;
+      padding: 5px;
+    }
+    margin-bottom: 10px;
+  }
+  button[type='submit'] {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  p {
+    size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

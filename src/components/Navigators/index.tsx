@@ -4,7 +4,7 @@ import CameraIcon from '../../assets/icon/Camera.png'
 import HomeIcon from '../../assets/icon/Home.png'
 import SettingIcon from '../../assets/icon/Setting.png'
 import { Colors, FontSize } from '../../assets/theme'
-import { IProps } from '../../service'
+import { INavigateProps } from '../../service'
 import './index.scss'
 import { MenuItem, UserItem } from './Item'
 
@@ -12,7 +12,7 @@ const first_item = { marginTop: '50px' }
 const onLocate = { backgroundColor: Colors.MAIN1, fontSize: FontSize.REGULAR }
 const combine = { backgroundColor: Colors.MAIN1, fontSize: FontSize.REGULAR, marginTop: '50px' }
 
-export const Navigator: FC<IProps> = (props: IProps) => {
+export const Navigator: FC<INavigateProps> = (props: INavigateProps) => {
   if (props.locate === 'home') {
     return (
       <div style={{ backgroundColor: Colors.MAIN2 }} className='navigator'>

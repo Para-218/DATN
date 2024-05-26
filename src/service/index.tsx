@@ -28,6 +28,13 @@ export interface APIEditProfileResponse {
 
 export type Storage = 'username' | 'roles' | 'accessToken'
 
-export interface IProps {
+export interface INavigateProps {
   locate: 'home' | 'cameras' | 'notifications' | 'calculator'
+}
+
+export interface IMenuItemProps {
+  name: string
+  url: string
+  icon: string
+  style?: React.CSSProperties
 }
