@@ -26,6 +26,10 @@ export interface APIEditProfileResponse {
   message: string
 }
 
+export interface APIAnalyzeAIResponse {
+  values: [number]
+}
+
 export type Storage = 'username' | 'roles' | 'accessToken'
 
 export interface INavigateProps {
@@ -37,4 +41,9 @@ export interface IMenuItemProps {
   url: string
   icon: string
   style?: React.CSSProperties
+}
+
+export interface IFormAddDataProps {
+  setClicks: React.Dispatch<React.SetStateAction<boolean>>,
+  setDataTable: React.Dispatch<React.SetStateAction<number[][]>>
 }

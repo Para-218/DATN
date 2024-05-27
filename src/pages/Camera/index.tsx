@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { Navigator } from '../../components/Navigators'
 import { CameraContent } from '../../components/CameraContent'
+import { Navigator } from '../../components/Navigators'
 import './index.scss'
 
 const Camera: FC = () => {

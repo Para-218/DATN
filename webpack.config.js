@@ -101,7 +101,7 @@ module.exports = (env, argv) => {
         key: fs.readFileSync("./.cert/cert.key"),
         cert: fs.readFileSync("./.cert/cert.crt"),
         ca: fs.readFileSync("./.cert/ca.crt"),
-    },
+      },
     },
     devtool: isProduction ? false : 'source-map',
     plugins: [

@@ -1,6 +1,6 @@
-import { FC, useState, FormEvent } from 'react'
+import { FC, FormEvent, useState } from 'react'
+import { APISigninError, APISigninResponse } from '../../service'
 import './index.scss'
-import { APISigninResponse, APISigninError } from '../../service'
 
 const LoginContainer: FC = () => {
   const [username, setUsername] = useState<string>('')
