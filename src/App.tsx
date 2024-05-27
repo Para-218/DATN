@@ -1,15 +1,16 @@
 import { FC } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-import Calculator from './pages/Calculator'
-import Camera from './pages/Camera'
-import Home from './pages/Home/home'
-import Login from './pages/Login'
-import SignUp from './pages/SignUp'
-import Statistic from './pages/Statistic'
-import EditProfile from './pages/EditProfile'
 import './assets/styles/app.css'
 import './assets/styles/app.scss'
+import Calculator from './pages/Calculator'
+import Camera from './pages/Camera'
+import EditProfile from './pages/EditProfile'
+import Home from './pages/Home/home'
+import Login from './pages/Login'
+import Notification from './pages/Notification'
+import SignUp from './pages/SignUp'
+import Statistic from './pages/Statistic'
 
 const App: FC = () => {
   const isLogin =
@@ -26,7 +27,7 @@ const App: FC = () => {
           <Route path='/calculator' element={isLogin ? <Calculator /> : <Login />} />
           <Route path='/camera' element={isLogin ? <Camera /> : <Login />} />
           <Route path='/editprofile' element={isLogin ? <EditProfile /> : <Login />} />
-          <Route path='/notify' element={<p>Notification</p>} />
+          <Route path='/notify' element={isLogin ? <Notification /> : <Login />} />
         </Routes>
       </Router>
     </div>

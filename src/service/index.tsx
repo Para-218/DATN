@@ -30,7 +30,26 @@ export interface APIAnalyzeAIResponse {
   values: [number]
 }
 
-export type Storage = 'username' | 'roles' | 'accessToken'
+export interface APINotificationResponse {
+  id: number,
+  data_link: string,
+  username: string,
+  time: string,
+  content: string
+}
+
+export interface APIListCameraResponse {
+  id: number,
+  name: string,
+  location: string,
+  ip_address: string,
+  users_cameras: {
+    camera_sensor_id: number,
+    username: string
+  }
+}
+
+export type Storage = 'username' | 'roles' | 'token' | 'recentVideo'
 
 export interface INavigateProps {
   locate: 'home' | 'cameras' | 'notifications' | 'calculator'

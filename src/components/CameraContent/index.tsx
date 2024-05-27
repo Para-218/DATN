@@ -1,64 +1,61 @@
-import { FC } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { FontSize } from '../../assets/theme'
+import { APIListCameraResponse, ErrorMessage } from '../../service'
 import './index.scss'
 
-const data = [
-  {
-    name: 'Camera 1',
-    url: '.',
-    lastUpdate: new Date(2023, 1, 1, 0, 0),
-    lastWarning: new Date(2023, 1, 1, 0, 0),
-    percentage: 100
-  },
-  {
-    name: 'Camera 2',
-    url: '.',
-    lastUpdate: new Date(2023, 1, 1, 0, 0),
-    lastWarning: new Date(2023, 1, 1, 0, 0),
-    percentage: 100
-  },
-  {
-    name: 'Camera 3',
-    url: '.',
-    lastUpdate: new Date(2023, 1, 1, 0, 0),
-    lastWarning: new Date(2024, 4, 19, 17, 24),
-    percentage: 100
-  }
-]
-
-const HTML_TRs_Element = data.map((element, index) => {
-  let lastUpdate = `${element.lastUpdate.getMonth()}/${element.lastUpdate.getDate()}/${element.lastUpdate.getFullYear()}`
-  let lastWarning = `${element.lastWarning.getMonth()}/${element.lastWarning.getDate()}/${element.lastWarning.getFullYear()}`
-  const today = new Date().toLocaleDateString()
-
-  if (today == lastWarning) lastWarning = `${element.lastWarning.getHours()}:${element.lastWarning.getMinutes()}`
-  if (today == lastUpdate) lastUpdate = `${element.lastWarning.getHours()}:${element.lastWarning.getMinutes()}`
-
-  return (
-    <tr key={index}>
-      <td>
-        <a href={element.url}>
-          <div>{element.name}</div>
-        </a>
-      </td>
-      <td>{lastUpdate}</td>
-      <td>{lastWarning}</td>
-      <td>{element.percentage}</td>
-    </tr>
-  )
-})
-
 export const CameraContent: FC = () => {
+  const username = localStorage.getItem('username')
+  const apiUrl = `https://ndvinh2110-specialized-project-559f6681f92a.herokuapp.com/api/users/${username}/cameras`
+  const [listCameras, setListCameras] = useState<{ id: number; name: string; location: string; ip_address: string }[]>(
+    []
+  )
+
+  const fetchCameras = async () => {
+    const response = await fetch(apiUrl)
+    if (response.status === 200) {
+      const data = (await response.json()) as APIListCameraResponse[]
+      setListCameras(
+        data.map((data) => {
+          return { id: data.id, name: data.name, location: data.location, ip_address: data.ip_address }
+        })
+      )
+    } else {
+      const error = (await response.json()) as ErrorMessage
+      console.log(error.message)
+    }
+  }
+
+  useEffect(() => {
+    try {
+      fetchCameras()
+    } catch (err) {
+      console.log(err)
+    }
+  })
+
+  const HTML_TRs_Element = listCameras.map((element, index) => {
+    return (
+      <tr key={index}>
+        <td>{element.id}</td>
+        <td>
+          <a href='.'>
+            <div>{element.name}</div>
+          </a>
+        </td>
+        <td>{element.location}</td>
+      </tr>
+    )
+  })
+
   return (
     <div className=''>
       <p style={{ fontSize: FontSize.MEDIUM, margin: '15px' }}>Danh sách camera</p>
       <table style={{ fontSize: FontSize.REGULAR }}>
         <thead>
           <tr>
+            <th>Id</th>
             <th>Tên</th>
-            <th>Cảnh báo lần cuối</th>
-            <th>Cập nhật lần cuối</th>
-            <th>Tỉ lệ cháy</th>
+            <th>Địa điểm</th>
           </tr>
         </thead>
         <tbody>{HTML_TRs_Element}</tbody>

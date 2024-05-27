@@ -27,6 +27,7 @@ const LoginContainer: FC = () => {
         localStorage.setItem('token', responseData.accessToken)
         localStorage.setItem('username', responseData.username)
         localStorage.setItem('roles', responseData.roles[0])
+        localStorage.setItem('recentVideo', '')
         window.location.href = '/home'
       } else if (response.status < 500) {
         const errorData = await response.json()
