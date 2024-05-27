@@ -1,10 +1,13 @@
 import { FC, useEffect, useState } from 'react'
+import ImageNotFound from '../../assets/images/Image_not_available.png'
 import { FontSize } from '../../assets/theme'
 import { APINotificationResponse, ErrorMessage } from '../../service'
 import './index.scss'
 
 export const NotificationContainer: FC = () => {
-  const [notificationsTable, setNotificationsTable] = useState<({ content: string; data_link: string } | null)[]>([])
+  const [notificationsTable, setNotificationsTable] = useState<{ content: string; data_link: string }[]>([])
+  const [clicked, setClick] = useState<boolean>(false)
+  const [dataLink, setDataLink] = useState<string>('')
 
   useEffect(() => {
     const username = localStorage.getItem('username')
@@ -13,7 +16,6 @@ export const NotificationContainer: FC = () => {
       const response = await fetch(apiUrl)
       if (response.status === 200) {
         const data = (await response.json()) as APINotificationResponse[]
-        console.log(100)
         setNotificationsTable(
           data
             .filter((data, index, array) => {
@@ -43,11 +45,17 @@ export const NotificationContainer: FC = () => {
     }
   }, [])
 
-  const jsxElement = notificationsTable.map((notifications, index) => {
-    const content = notifications?.content.split(' at ')[0]
-    const time = notifications?.content.split(' at ')[1]
+  const jsxTableElement = notificationsTable.map((notifications, index) => {
+    const content = notifications.content.split(' at ')[0]
+    const time = notifications.content.split(' at ')[1]
     return (
-      <tr key={index}>
+      <tr
+        key={index}
+        onClick={() => {
+          setClick(true)
+          setDataLink(notifications.data_link)
+        }}
+      >
         <td>
           <p>{content}</p>
         </td>
@@ -58,9 +66,50 @@ export const NotificationContainer: FC = () => {
     )
   })
 
+  const JSXImageElement = () => {
+    const [imageSrc, setImageSrc] = useState<string>('')
+
+    useEffect(() => {
+      const apiUrl = `https://ndvinh2110-specialized-project-559f6681f92a.herokuapp.com/api/datas/1_20231021123035.jpg`
+      const fetchPhoto = async () => {
+        const response = await fetch(apiUrl)
+        if (response.status === 200) {
+          const data = await response.blob()
+          setImageSrc(URL.createObjectURL(data))
+          console.log('1000')
+        } else {
+          const error = (await response.json()) as ErrorMessage
+          setDataLink('')
+          console.log(error.message)
+        }
+      }
+
+      try {
+        if (dataLink !== '' && clicked === true) fetchPhoto()
+        return () => {
+          if (imageSrc) URL.revokeObjectURL(imageSrc)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+    return (
+      <div className='modal-overlay'>
+        <div className='modal-content'>
+          <button className='close-button' onClick={() => setClick(false)}>
+            &times;
+          </button>
+          <img src={dataLink !== '' && clicked === true ? imageSrc : ImageNotFound} />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className=''>
       <p style={{ fontSize: FontSize.MEDIUM, margin: '15px' }}>Danh sách thông báo</p>
+      {clicked && <JSXImageElement />}
       <table>
         <thead>
           <tr>
@@ -68,7 +117,7 @@ export const NotificationContainer: FC = () => {
             <th>Thời gian</th>
           </tr>
         </thead>
-        <tbody>{jsxElement}</tbody>
+        <tbody>{jsxTableElement}</tbody>
       </table>
     </div>
   )

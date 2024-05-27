@@ -4,7 +4,7 @@ import { APINotificationResponse, ErrorMessage } from '../../service'
 import './index.scss'
 
 export const SmallNotify: FC = () => {
-  const [notificationsTable, setNotificationsTable] = useState<({ content: string; time: string } | null)[]>([])
+  const [notificationsTable, setNotificationsTable] = useState<{ content: string; time: string }[]>([])
 
   useEffect(() => {
     const username = localStorage.getItem('username')
@@ -15,9 +15,20 @@ export const SmallNotify: FC = () => {
       if (response.status === 200) {
         const data = (await response.json()) as APINotificationResponse[]
         setNotificationsTable(
-          data.map((data) => {
-            return { content: data.content, time: data.time }
-          })
+          data
+            .filter((data, index, array) => {
+              if (index === 0) {
+                return true
+              } else {
+                const date1 = new Date(array[index - 1].time)
+                const date2 = new Date(array[index].time)
+                const diffTime = Math.abs(date2.getTime() - date1.getTime())
+                return diffTime > 600000 ? true : false
+              }
+            })
+            .map((data) => {
+              return { content: data.content, time: data.time }
+            })
         )
       } else {
         const error = (await response.json()) as ErrorMessage
@@ -33,8 +44,13 @@ export const SmallNotify: FC = () => {
   }, [])
 
   const jsxElement = notificationsTable.map((notifications, index) => {
-    const content = notifications?.content.split(' at ')[0]
-    const time = notifications?.content.split(' at ')[1]
+    const fulldate = new Date(notifications.time)
+    const today = new Date()
+    const content = notifications.content.split(' at ')[0]
+    const time =
+      fulldate.getDay() !== today.getDay()
+        ? notifications.content.split(' at ')[1].split(' ')[0]
+        : notifications.content.split(' at ')[1].split(' ')[1]
     return (
       <tr key={index}>
         <td>{content}</td>
