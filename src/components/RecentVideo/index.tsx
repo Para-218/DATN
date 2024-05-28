@@ -1,9 +1,11 @@
 import { FC } from 'react'
 import { FontSize } from '../../assets/theme'
+import { ICameraProps } from '../../service'
 import './index.scss'
 import { SmallVideo } from './Item'
 
-export const RecentVideo: FC = () => {
+export const RecentVideo: FC<ICameraProps> = ({ listCameras }) => {
+  console.log(listCameras)
   return (
     <div className='recent-video'>
       <p style={{ fontSize: FontSize.MEDIUM, margin: '15px' }}>Xem gần đây</p>

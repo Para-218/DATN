@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { FontSize } from '../../assets/theme'
+import { IStatisticProps } from '../../service'
 import './index.scss'
 
 const data = [
@@ -48,7 +49,9 @@ const data = [
   }
 ]
 
-export const SmallStatistic: FC = () => {
+export const SmallStatistic: FC<IStatisticProps> = ({ listCameras }) => {
+  console.log(listCameras)
+
   return (
     <div className='small-statistic'>
       <p style={{ fontSize: FontSize.MEDIUM, margin: '15px' }}>Thống kê xác suất cháy</p>

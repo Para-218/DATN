@@ -4,34 +4,34 @@ import { APIListCameraResponse, ErrorMessage } from '../../service'
 import './index.scss'
 
 export const CameraContent: FC = () => {
-  const username = localStorage.getItem('username')
-  const apiUrl = `https://ndvinh2110-specialized-project-559f6681f92a.herokuapp.com/api/users/${username}/cameras`
   const [listCameras, setListCameras] = useState<{ id: number; name: string; location: string; ip_address: string }[]>(
     []
   )
 
-  const fetchCameras = async () => {
-    const response = await fetch(apiUrl)
-    if (response.status === 200) {
-      const data = (await response.json()) as APIListCameraResponse[]
-      setListCameras(
-        data.map((data) => {
-          return { id: data.id, name: data.name, location: data.location, ip_address: data.ip_address }
-        })
-      )
-    } else {
-      const error = (await response.json()) as ErrorMessage
-      console.log(error.message)
-    }
-  }
-
   useEffect(() => {
+    const username = localStorage.getItem('username')
+    const apiUrl = `https://ndvinh2110-specialized-project-559f6681f92a.herokuapp.com/api/users/${username}/cameras`
+
+    const fetchCameras = async () => {
+      const response = await fetch(apiUrl)
+      if (response.status === 200) {
+        const data = (await response.json()) as APIListCameraResponse[]
+        setListCameras(
+          data.map((data) => {
+            return { id: data.id, name: data.name, location: data.location, ip_address: data.ip_address }
+          })
+        )
+      } else {
+        const error = (await response.json()) as ErrorMessage
+        console.log(error.message)
+      }
+    }
     try {
       fetchCameras()
     } catch (err) {
       console.log(err)
     }
-  })
+  }, [])
 
   const HTML_TRs_Element = listCameras.map((element, index) => {
     return (

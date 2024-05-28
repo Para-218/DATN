@@ -31,22 +31,32 @@ export interface APIAnalyzeAIResponse {
 }
 
 export interface APINotificationResponse {
-  id: number,
-  data_link: string,
-  username: string,
-  time: string,
+  id: number
+  data_link: string
+  username: string
+  time: string
   content: string
 }
 
 export interface APIListCameraResponse {
-  id: number,
-  name: string,
-  location: string,
-  ip_address: string,
+  id: number
+  name: string
+  location: string
+  ip_address: string
   users_cameras: {
-    camera_sensor_id: number,
+    camera_sensor_id: number
     username: string
   }
+}
+
+export interface APIListPhotosResponse {
+  data_link: string
+  data_type: string
+  camera_sensor_id: number
+  start_time: string
+  end_time: string | null
+  ai_output: boolean
+  probability: number
 }
 
 export type Storage = 'username' | 'roles' | 'token' | 'recentVideo'
@@ -63,6 +73,14 @@ export interface IMenuItemProps {
 }
 
 export interface IFormAddDataProps {
-  setClicks: React.Dispatch<React.SetStateAction<boolean>>,
+  setClicks: React.Dispatch<React.SetStateAction<boolean>>
   setDataTable: React.Dispatch<React.SetStateAction<number[][]>>
+}
+
+export interface IStatisticProps {
+  listCameras: { id: number; name: string; location: string; ip_address: string }[]
+}
+
+export interface ICameraProps {
+  listCameras: { id: number; name: string; location: string; ip_address: string }[]
 }
