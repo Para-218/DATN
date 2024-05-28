@@ -79,15 +79,19 @@ export interface IFormAddDataProps {
 
 export interface ISmallVideoProps {
   name: string
-  dataLink: string
+  id: number
   description: string
   style?: React.CSSProperties
 }
 
 export interface IStatisticProps {
-  listCameras: { id: number; name: string; location: string; ip_address: string }[]
+  listCameras: { id: number; name: string; location: string; ip_address: string | null }[]
 }
 
 export interface ICameraProps {
-  listCameras: { id: number; name: string; location: string; ip_address: string }[]
+  listCameras: { id: number; name: string; location: string; ip_address: string | null }[]
+}
+
+export interface ILineChartStatisticProps {
+  id: number
 }

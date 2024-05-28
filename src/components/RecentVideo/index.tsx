@@ -2,35 +2,16 @@ import { FC } from 'react'
 import { FontSize } from '../../assets/theme'
 import { ICameraProps } from '../../service'
 import './index.scss'
-import { SmallVideo } from './Item'
+import { SmallVideo } from './SmallCamera'
 
 export const RecentVideo: FC<ICameraProps> = ({ listCameras }) => {
-  console.log(listCameras)
+  const JSXsmallVideo = listCameras.map((camera, index) => (
+    <SmallVideo key={index} id={camera.id} name={camera.name} description={camera.location} />
+  ))
   return (
     <div className='recent-video'>
-      <p style={{ fontSize: FontSize.MEDIUM, margin: '15px' }}>Xem gần đây</p>
-      <div>
-        <SmallVideo
-          dataLink='/alola'
-          name='Camera 1'
-          description='Rừng Amazon ở Brazil, Ecuador, Venezuela, Suriname, Peru, Colombia, Bolivia, Guyana và Guiana'
-        />
-        <SmallVideo
-          dataLink='/alola'
-          name='Camera 1'
-          description='Rừng Amazon ở Brazil, Ecuador, Venezuela, Suriname, Peru, Colombia, Bolivia, Guyana và Guiana'
-        />
-        <SmallVideo
-          dataLink='/alola'
-          name='Camera 1'
-          description='Rừng Amazon ở Brazil, Ecuador, Venezuela, Suriname, Peru, Colombia, Bolivia, Guyana và Guiana'
-        />
-        <SmallVideo
-          dataLink='/alola'
-          name='Camera 1'
-          description='Rừng Amazon ở Brazil, Ecuador, Venezuela, Suriname, Peru, Colombia, Bolivia, Guyana và Guiana'
-        />
-      </div>
+      <p style={{ fontSize: FontSize.MEDIUM, margin: '15px' }}>Nổi bật</p>
+      <div>{JSXsmallVideo}</div>
     </div>
   )
 }
