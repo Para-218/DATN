@@ -1,4 +1,4 @@
-import { ErrorMessage, APIEditProfileResponse } from '../../service'
+import { ErrorMessage, APIEditProfileResponse, oldAPIUrl } from '../../service'
 import { FC, useState, FormEvent } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { delay } from '../../functions/Delay'
@@ -14,7 +14,7 @@ export const FormEditProfile: FC = () => {
     e.preventDefault()
     const username = String(localStorage.getItem('username'))
     const tokenAccess = localStorage.getItem('token')
-    const apiUrl = `https://ndvinh2110-specialized-project-559f6681f92a.herokuapp.com/api/users/${username}`
+    const apiUrl = oldAPIUrl + `/api/users/${username}`
 
     try {
       const response = await fetch(apiUrl, {

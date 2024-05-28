@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { FontSize } from '../../assets/theme'
-import { APINotificationResponse, ErrorMessage } from '../../service'
+import { APINotificationResponse, ErrorMessage, oldAPIUrl } from '../../service'
 import './index.scss'
 
 export const SmallNotify: FC = () => {
@@ -8,7 +8,7 @@ export const SmallNotify: FC = () => {
 
   useEffect(() => {
     const username = localStorage.getItem('username')
-    const apiUrl = `https://ndvinh2110-specialized-project-559f6681f92a.herokuapp.com/api/users/${username}/notifications`
+    const apiUrl = oldAPIUrl + `/api/users/${username}/notifications`
 
     const fetchNotifications = async () => {
       const response = await fetch(apiUrl)

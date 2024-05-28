@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { FontSize } from '../../assets/theme'
 import { IStatisticProps } from '../../service'
-import { LineChartStatistic } from './Item'
 import './index.scss'
+import { LineChartStatistic } from './Item'
 
 export const SmallStatistic: FC<IStatisticProps> = ({ listCameras }) => {
   const JSXListLineChart = listCameras.map((element, index) => {

@@ -1,5 +1,5 @@
 import { FC, FormEvent, useState } from 'react'
-import { APISigninError, APISigninResponse } from '../../service'
+import { APISigninError, APISigninResponse, oldAPIUrl } from '../../service'
 import './index.scss'
 
 const LoginContainer: FC = () => {
@@ -9,7 +9,7 @@ const LoginContainer: FC = () => {
 
   const signin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const apiUrl = 'https://ndvinh2110-specialized-project-559f6681f92a.herokuapp.com/api/auth/signin'
+    const apiUrl = oldAPIUrl + '/api/auth/signin'
 
     try {
       const response = await fetch(apiUrl, {

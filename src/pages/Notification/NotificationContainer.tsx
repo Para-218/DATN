@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import ImageNotFound from '../../assets/images/Image_not_available.png'
 import { FontSize } from '../../assets/theme'
-import { APINotificationResponse, ErrorMessage } from '../../service'
+import { APINotificationResponse, ErrorMessage, oldAPIUrl } from '../../service'
 import './index.scss'
 
 export const NotificationContainer: FC = () => {
@@ -11,11 +11,13 @@ export const NotificationContainer: FC = () => {
 
   useEffect(() => {
     const username = localStorage.getItem('username')
-    const apiUrl = `https://ndvinh2110-specialized-project-559f6681f92a.herokuapp.com/api/users/${username}/notifications`
+    const apiUrl = oldAPIUrl + `/api/users/${username}/notifications`
     const fetchNotifications = async () => {
       const response = await fetch(apiUrl)
       if (response.status === 200) {
+        console.log(response.status)
         const data = (await response.json()) as APINotificationResponse[]
+        console.log(data)
         setNotificationsTable(
           data
             .filter((data, index, array) => {
@@ -70,7 +72,7 @@ export const NotificationContainer: FC = () => {
     const [imageSrc, setImageSrc] = useState<string>('')
 
     useEffect(() => {
-      const apiUrl = `https://ndvinh2110-specialized-project-559f6681f92a.herokuapp.com/api/datas/1_20231021123035.jpg`
+      const apiUrl = oldAPIUrl + `/api/datas/${dataLink}`
       const fetchPhoto = async () => {
         const response = await fetch(apiUrl)
         if (response.status === 200) {

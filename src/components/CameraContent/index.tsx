@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from 'react'
 import { FontSize } from '../../assets/theme'
-import { APIListCameraResponse, ErrorMessage } from '../../service'
+import { APIListCameraResponse, ErrorMessage, oldAPIUrl } from '../../service'
 import './index.scss'
 
 export const CameraContent: FC = () => {
@@ -10,7 +10,7 @@ export const CameraContent: FC = () => {
 
   useEffect(() => {
     const username = localStorage.getItem('username')
-    const apiUrl = `https://ndvinh2110-specialized-project-559f6681f92a.herokuapp.com/api/users/${username}/cameras`
+    const apiUrl = oldAPIUrl + `/api/users/${username}/cameras`
 
     const fetchCameras = async () => {
       const response = await fetch(apiUrl)
@@ -60,10 +60,6 @@ export const CameraContent: FC = () => {
         </thead>
         <tbody>{HTML_TRs_Element}</tbody>
       </table>
-      <form>
-        <input type='text' placeholder='Nhập địa chỉ ip camera' />
-        <button>Thêm</button>
-      </form>
     </div>
   )
 }

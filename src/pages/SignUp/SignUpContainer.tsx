@@ -1,6 +1,6 @@
 import { FC, FormEvent, useState } from 'react'
 import { delay } from '../../functions/Delay'
-import { APISignupResponse, ErrorMessage } from '../../service'
+import { APISignupResponse, ErrorMessage, oldAPIUrl } from '../../service'
 import './index.scss'
 
 const SignUpContainer: FC = () => {
@@ -13,7 +13,7 @@ const SignUpContainer: FC = () => {
 
   const signup = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const apiUrl = 'https://ndvinh2110-specialized-project-559f6681f92a.herokuapp.com/api/auth/signup'
+    const apiUrl = oldAPIUrl + '/api/auth/signup'
 
     try {
       const response = await fetch(apiUrl, {
