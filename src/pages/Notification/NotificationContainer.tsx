@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import ImageNotFound from '../../assets/images/Image_not_available.png'
 import { FontSize } from '../../assets/theme'
-import { APINotificationResponse, ErrorMessage, oldAPIUrl } from '../../service'
+import { APINotificationResponse, ErrorMessage, oldAPIUrl, TimeGap } from '../../service'
 import './index.scss'
 
 export const NotificationContainer: FC = () => {
@@ -21,13 +21,13 @@ export const NotificationContainer: FC = () => {
         setNotificationsTable(
           data
             .filter((data, index, array) => {
-              if (index === 0) {
+              if (index === array.length - 1) {
                 return true
               } else {
-                const date1 = new Date(array[index - 1].time)
+                const date1 = new Date(array[index + 1].time)
                 const date2 = new Date(array[index].time)
                 const diffTime = Math.abs(date2.getTime() - date1.getTime())
-                return diffTime > 600000 ? true : false
+                return diffTime > TimeGap ? true : false
               }
             })
             .map((data) => {

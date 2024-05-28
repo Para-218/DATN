@@ -96,5 +96,7 @@ export interface ILineChartStatisticProps {
   id: number
 }
 
+export const TimeGap = 1 * 60 * 1000
+
 // export const oldAPIUrl = 'https://ndvinh2110-specialized-project-559f6681f92a.herokuapp.com'
 export const oldAPIUrl = 'https://octopus-app-tuor3.ondigitalocean.app'

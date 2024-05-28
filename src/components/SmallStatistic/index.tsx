@@ -12,7 +12,7 @@ export const SmallStatistic: FC<IStatisticProps> = ({ listCameras }) => {
   return (
     <div className='small-statistic'>
       <p style={{ fontSize: FontSize.MEDIUM, margin: '15px' }}>Thống kê xác suất cháy</p>
-      <a href='/statistic'>{JSXListLineChart}</a>
+      <a href='.'>{JSXListLineChart}</a>
     </div>
   )
 }

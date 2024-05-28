@@ -7,30 +7,34 @@ import { APIListPhotosResponse, ErrorMessage, oldAPIUrl } from '../../service'
 import './index.scss'
 
 const Statistic: FC = () => {
-  const onChangeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const a = e.target.value.split('-').map((item) => parseInt(item))
-    const filterDate = `${a[1]}/${a[2]}/${a[0]}`
-    const b = data.filter((element) => element.date.includes(filterDate))
-    console.log(b)
-  }
-
   const [data, setData] = useState<{ date: string; probabilty: number }[]>([])
+  const [filterDate, setFilterDate] = useState<string>('')
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const id = searchParams.get('id')
 
   useEffect(() => {
     const apiUrl = oldAPIUrl + `/api/cameras/${id}/datas`
+    console.log(200)
     const fetchCameras = async () => {
       const response = await fetch(apiUrl)
       if (response.status === 200) {
         const json = (await response.json()) as APIListPhotosResponse[]
+        console.log(filterDate)
         setData(
-          json.map((data) => {
-            const start_time = new Date(data.start_time)
-            const date = start_time.toISOString()
-            return { date: String(date), probabilty: data.probability }
-          })
+          json
+            .filter((element) => {
+              console.log(element.start_time)
+              if (filterDate) return element.start_time.includes(filterDate)
+              return true
+            })
+            .map((element) => {
+              const start_time = new Date(element.start_time)
+              const date = filterDate
+                ? `${start_time.getHours() - 7}:${start_time.getMinutes()}:${start_time.getSeconds()}`
+                : `${start_time.getFullYear()}-${start_time.getMonth() + 1}-${start_time.getDate()}`
+              return { date: String(date), probabilty: element.probability }
+            })
         )
       } else {
         const error = (await response.json()) as ErrorMessage
@@ -42,7 +46,7 @@ const Statistic: FC = () => {
     } catch (err) {
       console.log(err)
     } /* eslint-disable-next-line */
-  }, [])
+  }, [filterDate])
 
   return (
     <div className='page'>
@@ -60,7 +64,7 @@ const Statistic: FC = () => {
               <Line type='monotone' dataKey='probabilty' stroke='#8884d8' />
             </LineChart>
           </ResponsiveContainer>
-          <input type='date' onChange={(e) => onChangeDate(e)} />
+          <input type='date' onChange={(e) => setFilterDate(e.target.value)} />
         </div>
       </div>
     </div>

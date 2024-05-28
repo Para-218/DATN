@@ -21,7 +21,7 @@ export const LineChartStatistic: FC<ILineChartStatisticProps> = ({ id }) => {
             })
             .map((data) => {
               const start_time = new Date(data.start_time)
-              const date = `${start_time.getHours()}:${start_time.getMinutes()}:${start_time.getSeconds()}`
+              const date = `${start_time.getHours() - 7}:${start_time.getMinutes()}:${start_time.getSeconds()}`
               return { date: String(date), probabilty: data.probability }
             })
         )
