@@ -11,22 +11,22 @@ export const RecentVideo: FC<ICameraProps> = ({ listCameras }) => {
       <p style={{ fontSize: FontSize.MEDIUM, margin: '15px' }}>Xem gần đây</p>
       <div>
         <SmallVideo
-          url='/alola'
+          dataLink='/alola'
           name='Camera 1'
           description='Rừng Amazon ở Brazil, Ecuador, Venezuela, Suriname, Peru, Colombia, Bolivia, Guyana và Guiana'
         />
         <SmallVideo
-          url='/alola'
+          dataLink='/alola'
           name='Camera 1'
           description='Rừng Amazon ở Brazil, Ecuador, Venezuela, Suriname, Peru, Colombia, Bolivia, Guyana và Guiana'
         />
         <SmallVideo
-          url='/alola'
+          dataLink='/alola'
           name='Camera 1'
           description='Rừng Amazon ở Brazil, Ecuador, Venezuela, Suriname, Peru, Colombia, Bolivia, Guyana và Guiana'
         />
         <SmallVideo
-          url='/alola'
+          dataLink='/alola'
           name='Camera 1'
           description='Rừng Amazon ở Brazil, Ecuador, Venezuela, Suriname, Peru, Colombia, Bolivia, Guyana và Guiana'
         />

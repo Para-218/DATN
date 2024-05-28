@@ -77,6 +77,13 @@ export interface IFormAddDataProps {
   setDataTable: React.Dispatch<React.SetStateAction<number[][]>>
 }
 
+export interface ISmallVideoProps {
+  name: string
+  dataLink: string
+  description: string
+  style?: React.CSSProperties
+}
+
 export interface IStatisticProps {
   listCameras: { id: number; name: string; location: string; ip_address: string }[]
 }
