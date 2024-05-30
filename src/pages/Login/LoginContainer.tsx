@@ -50,7 +50,7 @@ const LoginContainer: FC = () => {
         <input type='password' placeholder='Enter password' onChange={(e) => setPassword(e.target.value)} required />
         <button type='submit'>Login</button>
       </form>
-      <a href='/signup'>Not have account? sign up!</a>
+      <a href='/signup'>Not have account? Sign up!</a>
       {error != '' && <p>{error}</p>}
     </div>
   )

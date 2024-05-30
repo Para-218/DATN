@@ -64,10 +64,12 @@ export const SmallNotify: FC = () => {
   return (
     <div className='small-notify'>
       <p style={{ fontSize: FontSize.MEDIUM, margin: '15px' }}>Thông báo</p>
-      <table>
-        <thead></thead>
-        <tbody>{jsxElement}</tbody>
-      </table>
+      <div className='small-notify-inner'>
+        <table onClick={() => (window.location.href = '/notify')}>
+          <thead></thead>
+          <tbody>{jsxElement}</tbody>
+        </table>
+      </div>
     </div>
   )
 }

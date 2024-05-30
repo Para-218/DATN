@@ -1,9 +1,13 @@
-import { ErrorMessage, APIEditProfileResponse, oldAPIUrl } from '../../service'
-import { FC, useState, FormEvent } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { FC, FormEvent, useState } from 'react'
 import { delay } from '../../functions/Delay'
+import { APIEditProfileResponse, ErrorMessage, oldAPIUrl } from '../../service'
 
-export const FormEditProfile: FC = () => {
+export const FormEditProfile: FC<{ firstname: string; lastname: string; phoneNumber: string }> = ({
+  firstname,
+  lastname,
+  phoneNumber
+}) => {
   const [first_name, setFirstname] = useState<string>('')
   const [last_name, setLastname] = useState<string>('')
   const [phone, setPhone] = useState<string>('')
@@ -44,6 +48,7 @@ export const FormEditProfile: FC = () => {
     }
     return
   }
+  console.log(phoneNumber)
 
   return (
     <div>
@@ -51,15 +56,15 @@ export const FormEditProfile: FC = () => {
       <form onSubmit={handleEditProfile}>
         <label>
           Chỉnh sửa họ:
-          <input type='text' onChange={(e) => setFirstname(e.target.value)} placeholder='Nguyễn' />
+          <input type='text' onChange={(e) => setFirstname(e.target.value)} defaultValue={firstname} />
         </label>
         <label>
           Chỉnh sửa tên:
-          <input type='text' onChange={(e) => setLastname(e.target.value)} placeholder='A' />
+          <input type='text' onChange={(e) => setLastname(e.target.value)} defaultValue={lastname} />
         </label>
         <label>
           Chỉnh sửa số điện thoại:
-          <input type='text' onChange={(e) => setPhone(e.target.value)} />
+          <input type='text' onChange={(e) => setPhone(e.target.value)} defaultValue={phoneNumber} />
         </label>
         <label>
           Chỉnh sửa mật khẩu:

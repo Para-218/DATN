@@ -27,7 +27,7 @@ export interface APIEditProfileResponse {
 }
 
 export interface APIAnalyzeAIResponse {
-  values: [number]
+  value: [number]
 }
 
 export interface APINotificationResponse {
@@ -57,6 +57,14 @@ export interface APIListPhotosResponse {
   end_time: string | null
   ai_output: boolean
   probability: number
+}
+
+export interface APIGetAUserResponse {
+  first_name: string
+  last_name: string
+  username: string
+  password: string
+  phone: string
 }
 
 export type Storage = 'username' | 'roles' | 'token' | 'recentVideo'

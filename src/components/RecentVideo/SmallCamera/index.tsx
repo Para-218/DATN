@@ -6,7 +6,6 @@ import './index.scss'
 
 export const SmallVideo: FC<ISmallVideoProps> = (props: ISmallVideoProps) => {
   const [imageSrc, setImageSrc] = useState<string>('')
-  const [clickedImage, setClickedImage] = useState<boolean>(false) //eslint-disable-line
 
   useEffect(() => {
     const fetchLastPhoto = async () => {
@@ -47,21 +46,13 @@ export const SmallVideo: FC<ISmallVideoProps> = (props: ISmallVideoProps) => {
     } /* eslint-disable-next-line */
   }, [props])
 
-  // const ModalImage = () => {
-  //   return (
-  //     <div className='modal-overlay' onClick={() => setClickedImage(false)}>
-  //       <div className='modal-content'>
-  //         <button className='close-button' onClick={() => setClickedImage(false)}>
-  //           &times;
-  //         </button>
-  //         <img src={imageSrc || ImageNotFound} />
-  //       </div>
-  //     </div>
-  //   )
-  // }
   return (
-    <a className='small-video' href='#action1' style={props.style} onClick={() => setClickedImage(true)}>
-      {/*clickedImage && <ModalImage />*/}
+    <a
+      className='small-video'
+      href='#action1'
+      style={props.style}
+      onClick={() => window.open(imageSrc, '_blank', 'noopener,noreferrer')}
+    >
       <img src={imageSrc || ImageNotFound} />
       <div className='smaller-video'>
         <p style={{ fontSize: FontSize.REGULAR }}>{props.name}</p>

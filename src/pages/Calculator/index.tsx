@@ -6,12 +6,12 @@ import { FormAddData } from '../../components/FormAddData'
 import { Navigator } from '../../components/Navigators'
 import './index.scss'
 
+/*[50.45, 22.81, 14378, 574, 12719, 19040, 936.944, 0.85, 1],
+[26.95, 56.85, 0, 400, 13000, 19442, 936.746, 0.38, 0]*/
+
 const Calculator: FC = () => {
   const [clicked, setClicks] = useState<boolean>(false)
-  const [dataTable, setDataTable] = useState<number[][]>([
-    [50.45, 22.81, 14378, 574, 12719, 19040, 936.944, 0.85, 1],
-    [26.95, 56.85, 0, 400, 13000, 19442, 936.746, 0.38, 0]
-  ])
+  const [dataTable, setDataTable] = useState<number[][]>([[26.95, 56.85, 0, 400, 13000, 19442, 936.746, 0.38, 0]])
 
   const handleAdjustData = () => {
     alert('Chức năng đang được phát triển')

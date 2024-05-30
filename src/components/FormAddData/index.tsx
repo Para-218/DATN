@@ -27,9 +27,12 @@ export const FormAddData: FC<IFormAddDataProps> = ({ setClicks, setDataTable }) 
       })
       if (response.status === 200) {
         const responseData = (await response.json()) as APIAnalyzeAIResponse
+        const value = String(responseData.value[0])
+        console.log(value)
         setDataTable((prevState) => {
           const newState = [...prevState]
-          const values = [temp, humid, TVOC, eCO2, RAWH2, RAWEth, presure, PMI, 1]
+          const values = [temp, humid, TVOC, eCO2, RAWH2, RAWEth, presure, PMI, value]
+          console.log(values)
           const numArray = values.map((str) => {
             const num = Number(str)
             return isNaN(num) ? 0 : num
@@ -47,7 +50,7 @@ export const FormAddData: FC<IFormAddDataProps> = ({ setClicks, setDataTable }) 
     } catch (err) {
       setDataTable((prevState) => {
         const newState = [...prevState]
-        const values = [temp, humid, TVOC, eCO2, RAWH2, RAWEth, presure, PMI, 1]
+        const values = [temp, humid, TVOC, eCO2, RAWH2, RAWEth, presure, PMI, 0]
         const numArray = values.map((str) => {
           const num = Number(str)
           return isNaN(num) ? 0 : num

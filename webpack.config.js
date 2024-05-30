@@ -97,11 +97,19 @@ module.exports = (env, argv) => {
         serveIndex: true,
         watch: true // khi thay đổi content trong index.html thì cũng sẽ reload
       },
-      https: {
-        key: fs.readFileSync("./.cert/cert.key"),
-        cert: fs.readFileSync("./.cert/cert.crt"),
-        ca: fs.readFileSync("./.cert/ca.crt"),
-      },
+      // https: {
+      //   key: fs.readFileSync('./.cert/cert.key'),
+      //   cert: fs.readFileSync('./.cert/cert.crt'),
+      //   ca: fs.readFileSync('./.cert/ca.crt')
+      // },
+      server: {
+        type: 'https',
+        options: {
+          key: fs.readFileSync(path.join(__dirname, './.cert/cert.key')),
+          cert: fs.readFileSync(path.join(__dirname, './.cert/cert.crt')),
+          ca: fs.readFileSync(path.join(__dirname, './.cert/ca.crt'))
+        }
+      }
     },
     devtool: isProduction ? false : 'source-map',
     plugins: [

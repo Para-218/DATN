@@ -21,12 +21,29 @@ export const CameraContent: FC = () => {
             return { id: data.id, name: data.name, location: data.location, ip_address: data.ip_address }
           })
         )
+        return data
       } else {
         const error = (await response.json()) as ErrorMessage
         console.log(error.message)
+        return []
       }
     }
+    // const fetchPhotos = async (listPhoto: Promise<APIListCameraResponse[]>) => {
+    //   const data_link = await listPhoto
+    //   const apiUrl = oldAPIUrl + `/api/datas/${data_link}`
+
+    //   const response = await fetch(apiUrl)
+    //   if (response.status === 200) {
+    //     const data = await response.blob()
+    //     const url = URL.createObjectURL(data)
+    //     console.log(url)
+    //   } else {
+    //     const error = (await response.json()) as ErrorMessage
+    //     console.log(error.message)
+    //   }
+    // }
     try {
+      // const listPhoto = fetchCameras()
       fetchCameras()
     } catch (err) {
       console.log(err)

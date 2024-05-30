@@ -5,18 +5,24 @@
   flex-direction: row;
   justify-content: center;
   overflow: hidden;
+  @media only screen and (max-width: 440px) {
+    width: 440px;
+  }
 }
 
 .main-content {
-  width: 956px;
+  width: 95%;
   height: 768px;
   background-color: #f8f8f8;
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 440px) {
+    display: block;
+  }
   justify-content: center;
-  overflow: hidden;
+  overflow: scroll;
   .upper-div {
-    width: 907px;
+    width: 95%;
     height: 337px;
     margin-left: auto;
     margin-right: auto;
@@ -25,9 +31,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    @media only screen and (max-width: 440px) {
+      flex-direction: column;
+      height: 700px;
+    }
   }
   .lower-div {
-    width: 907px;
+    width: 95%;
     height: 337px;
     background-color: white;
     margin-left: auto;

@@ -27,7 +27,6 @@ const App: FC = () => {
 
   return (
     <div>
-      <h1 style={{ visibility: 'hidden' }}>Count: {count}</h1>
       <Router>
         <Routes>
           <Route path='/' element={isLogin ? <Home count={count} /> : <Login />} />
