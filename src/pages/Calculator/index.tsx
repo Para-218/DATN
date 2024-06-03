@@ -3,6 +3,7 @@ import AddButton from '../../assets/icon/Add button.png'
 import AdjustButton from '../../assets/icon/Adjust button.png'
 import { FontSize } from '../../assets/theme'
 import { FormAddData } from '../../components/FormAddData'
+import { Header } from '../../components/Header'
 import { Navigator } from '../../components/Navigators'
 import './index.scss'
 
@@ -36,38 +37,41 @@ const Calculator: FC = () => {
   })
 
   return (
-    <div className='page'>
-      <Navigator locate='calculator' />
-      <div className='main-content'>
-        <div className='calculator-content'>
-          {clicked && <FormAddData setClicks={setClicks} setDataTable={setDataTable} />}
-          <p style={{ fontSize: FontSize.MEDIUM, margin: '15px' }}>Dự đoán cháy thông qua dữ liệu từ sensor</p>
-          <div className='calculator-inner'>
-            <table>
-              <thead>
-                <tr>
-                  <th>NHIỆT ĐỘ (C)</th>
-                  <th>ĐỘ ẨM (%)</th>
-                  <th>TVOC (ppb)</th>
-                  <th>eCO2 (ppm)</th>
-                  <th>RAW H2</th>
-                  <th>RAW Ethanol</th>
-                  <th>ÁP SUẤT (hPa)</th>
-                  <th>PM1.0</th>
-                  <th>KẾT QUẢ</th>
-                </tr>
-              </thead>
-              <tbody>{jsxTableElement}</tbody>
-            </table>
-            <div className='action'>
-              <button onClick={() => setClicks(true)}>
-                <img src={AddButton} />
-                <p style={{ fontSize: FontSize.REGULAR }}>Thêm</p>
-              </button>
-              <button onClick={handleAdjustData}>
-                <img src={AdjustButton} />
-                <p style={{ fontSize: FontSize.REGULAR }}>Chỉnh sửa</p>
-              </button>
+    <div className='web'>
+      <Header />
+      <div className='page'>
+        <Navigator locate='calculator' />
+        <div className='main-content'>
+          <div className='calculator-content'>
+            {clicked && <FormAddData setClicks={setClicks} setDataTable={setDataTable} />}
+            <p style={{ fontSize: FontSize.MEDIUM, margin: '15px' }}>Dự đoán cháy thông qua dữ liệu từ sensor</p>
+            <div className='calculator-inner'>
+              <table>
+                <thead>
+                  <tr>
+                    <th>NHIỆT ĐỘ (C)</th>
+                    <th>ĐỘ ẨM (%)</th>
+                    <th>TVOC (ppb)</th>
+                    <th>eCO2 (ppm)</th>
+                    <th>RAW H2</th>
+                    <th>RAW Ethanol</th>
+                    <th>ÁP SUẤT (hPa)</th>
+                    <th>PM1.0</th>
+                    <th>KẾT QUẢ</th>
+                  </tr>
+                </thead>
+                <tbody>{jsxTableElement}</tbody>
+              </table>
+              <div className='action'>
+                <button onClick={() => setClicks(true)}>
+                  <img src={AddButton} />
+                  <p style={{ fontSize: FontSize.REGULAR }}>Thêm</p>
+                </button>
+                <button onClick={handleAdjustData}>
+                  <img src={AdjustButton} />
+                  <p style={{ fontSize: FontSize.REGULAR }}>Chỉnh sửa</p>
+                </button>
+              </div>
             </div>
           </div>
         </div>

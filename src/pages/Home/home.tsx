@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react'
+import { Header } from '../../components/Header'
 import { Navigator } from '../../components/Navigators'
 import { RecentVideo } from '../../components/RecentVideo'
 import { SmallNotify } from '../../components/SmallNotify'
@@ -44,15 +45,18 @@ const Home: FC<{ count: number }> = ({ count }) => {
   }, [count])
 
   return (
-    <div className='page'>
-      <Navigator locate='home' />
-      <div className='main-content'>
-        <div className='upper-div'>
-          <SmallStatistic listCameras={listCameras} />
-          <SmallNotify />
-        </div>
-        <div className='lower-div'>
-          <RecentVideo listCameras={listCameras} />
+    <div className='web'>
+      <Header />
+      <div className='page'>
+        <Navigator locate='home' />
+        <div className='main-content'>
+          <div className='upper-div'>
+            <SmallStatistic listCameras={listCameras} />
+            <SmallNotify />
+          </div>
+          <div className='lower-div'>
+            <RecentVideo listCameras={listCameras} />
+          </div>
         </div>
       </div>
     </div>

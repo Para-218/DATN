@@ -2,10 +2,11 @@ import { FC, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { FontSize } from '../../assets/theme'
+import { Header } from '../../components/Header'
 import { Navigator } from '../../components/Navigators'
 import { APIListPhotosResponse, ErrorMessage, oldAPIUrl } from '../../service'
-// import moment from 'moment'
 import './index.scss'
+// import moment from 'moment'
 
 const Statistic: FC = () => {
   const [data, setData] = useState<{ date: string; probability: number }[]>([])
@@ -62,22 +63,25 @@ const Statistic: FC = () => {
   }, [filterDate])
 
   return (
-    <div className='page'>
-      <Navigator locate='home' />
-      <div className='main-content'>
-        <div className='camera-content'>
-          <p style={{ fontSize: FontSize.MEDIUM, margin: '15px' }}>Thống kê xác suất</p>
-          <ResponsiveContainer width='90%' height='80%'>
-            <LineChart data={data}>
-              <CartesianGrid strokeDasharray='3 3' />
-              <XAxis dataKey='date' />
-              <YAxis domain={[0, 100]} />
-              <Tooltip />
-              <Legend />
-              <Line type='monotone' dataKey='probability' stroke='#8884d8' />
-            </LineChart>
-          </ResponsiveContainer>
-          <input type='date' onChange={(e) => setFilterDate(e.target.value)} />
+    <div className='web'>
+      <Header />
+      <div className='page'>
+        <Navigator locate='home' />
+        <div className='main-content'>
+          <div className='statistic-content'>
+            <p style={{ fontSize: FontSize.MEDIUM, margin: '15px' }}>Thống kê xác suất</p>
+            <ResponsiveContainer width='90%' height='80%'>
+              <LineChart data={data}>
+                <CartesianGrid strokeDasharray='3 3' />
+                <XAxis dataKey='date' />
+                <YAxis domain={[0, 100]} />
+                <Tooltip />
+                <Legend />
+                <Line type='monotone' dataKey='probability' stroke='#8884d8' />
+              </LineChart>
+            </ResponsiveContainer>
+            <input type='date' onChange={(e) => setFilterDate(e.target.value)} />
+          </div>
         </div>
       </div>
     </div>
