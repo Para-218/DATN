@@ -2,8 +2,18 @@
   z-index: 900;
   width: 450px;
   background-color: #4b4b4b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 0px;
   @media only screen and (max-width: 440px) {
-    height: 75px;
+    height: 65px;
+  }
+  h1 {
+    font-size: 30px;
+    color: white;
+    font-weight: 600;
+    margin-left: 120px;
+    padding: 0px;
   }
 }
